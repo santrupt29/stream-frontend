@@ -21,7 +21,7 @@ export default function CustomNavbar() {
   return (
     <nav className="w-full flex justify-between items-center py-6 px-8 bg-[#FDFBF7] border-b border-[#EAE7DC]/50">
       <Link href="/" className="text-2xl font-serif font-bold tracking-tighter">
-        STREAM<span className="font-light text-gray-400">APP</span>
+        VORTEX<span className="font-light text-gray-400"></span>
       </Link>
 
       <div className="flex items-center space-x-6">
