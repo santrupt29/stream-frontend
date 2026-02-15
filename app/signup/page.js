@@ -27,6 +27,7 @@ export default function SignupPage() {
       router.push("/login")
     } catch (error) {
       console.log("Error logging in, Try again", error);
+      toast.error("Signup failed: " + (error.message || "Please try again"));
     } finally {
       setLoading(false);
     }

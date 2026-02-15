@@ -37,9 +37,9 @@ export default function CustomNavbar() {
           </>
         ) : (
           <>
-            {/* <Link href="/dashboard" className="text-sm font-medium hover:underline">
+            <Link href="/dashboard" className="text-sm font-medium hover:underline">
               Studio
-            </Link> */}
+            </Link>
             <button 
               onClick={handleLogout}
               className="bg-red-50 text-red-600 border border-red-100 text-sm px-5 py-2 rounded-md hover:bg-red-100 transition-colors"

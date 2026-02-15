@@ -44,7 +44,6 @@ function VideoUpload() {
       alert("Select File !!");
       return;
     }
-    //submit the file to server:
     saveVideoToServer(selectedFile, meta);
   }
 
@@ -55,14 +54,11 @@ function VideoUpload() {
     });
     setSelectedFile(null);
     setUploading(false);
-    // setMessage("");
   }
 
-  //submit file to server
   async function saveVideoToServer(video, videoMetaData) {
     setUploading(true);
 
-    //api call
 
     try {
       let formData = new FormData();

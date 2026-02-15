@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import CustomNavbar from "@/components/Navbar";
 import { authService } from "@/service/authService";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -13,7 +14,7 @@ export default function LoginPage() {
       await authService.login(credentials.email, credentials.password);
       window.location.href = "/dashboard";
     } catch (error) {
-      alert("Invalid Credentials: " + error);
+      toast.error("Invalid Credentials: " + error);
     }
     // console.log("Logging in:", credentials);
   };

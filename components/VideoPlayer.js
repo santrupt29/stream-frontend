@@ -77,7 +77,6 @@ function VideoPlayer({ src }) {
   useEffect(() => {
     if (!src || !videoRef.current) return;
 
-    // 1. Initialize Video.js
     const player = videojs(videoRef.current, {
       controls: true,
       autoplay: true,
