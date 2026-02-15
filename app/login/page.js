@@ -4,19 +4,26 @@ import Link from "next/link";
 import CustomNavbar from "@/components/Navbar";
 import { authService } from "@/service/authService";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useStore } from "@/store";
 
 export default function LoginPage() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
+  const { login } = useStore();
+  const router = useRouter();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await authService.login(credentials.email, credentials.password);
-      window.location.href = "/dashboard";
+      const userData = await authService.login(credentials.email, credentials.password);
+      login(userData);
+      toast.success("Welcome back!");
+      router.push("/dashboard");
     } catch (error) {
-      toast.error("Invalid Credentials: " + error);
+      toast.error("Invalid Credentials");
+      console.error(error);
     }
-    // console.log("Logging in:", credentials);
   };
 
   return (
@@ -32,10 +39,10 @@ export default function LoginPage() {
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label className="block text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Email</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 className="w-full bg-[#FDFBF7] border border-gray-100 px-4 py-3 rounded-lg focus:outline-none focus:border-gray-400 transition-all"
-                onChange={(e) => setCredentials({...credentials, email: e.target.value})}
+                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
                 required
               />
             </div>
@@ -45,10 +52,10 @@ export default function LoginPage() {
                 <label className="block text-xs font-semibold text-gray-400 uppercase tracking-widest">Password</label>
                 <Link href="#" className="text-[10px] text-gray-400 hover:text-black uppercase tracking-tighter">Forgot?</Link>
               </div>
-              <input 
-                type="password" 
+              <input
+                type="password"
                 className="w-full bg-[#FDFBF7] border border-gray-100 px-4 py-3 rounded-lg focus:outline-none focus:border-gray-400 transition-all"
-                onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
                 required
               />
             </div>

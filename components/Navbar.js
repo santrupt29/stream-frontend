@@ -1,24 +1,23 @@
 "use client"
 
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useStore } from "@/store";
+import { useEffect } from "react";
 
 export default function CustomNavbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated, logout, checkAuth } = useStore();
   const router = useRouter();
 
   useEffect(() => {
-    const token = Cookies.get("auth_token");
-    setIsLoggedIn(!!token);
-  }, []);
+    checkAuth();
+  }, [checkAuth]);
 
   const handleLogout = () => {
-    Cookies.remove("auth_token");
-    setIsLoggedIn(false);
+    logout();
     router.push("/login");
   };
+
   return (
     <nav className="w-full flex justify-between items-center py-6 px-8 bg-[#FDFBF7] border-b border-[#EAE7DC]/50">
       <Link href="/" className="text-2xl font-serif font-bold tracking-tighter">
@@ -26,7 +25,7 @@ export default function CustomNavbar() {
       </Link>
 
       <div className="flex items-center space-x-6">
-        {!isLoggedIn ? (
+        {!isAuthenticated ? (
           <>
             <Link href="/login" className="text-sm font-medium hover:underline">
               Login
@@ -40,7 +39,7 @@ export default function CustomNavbar() {
             <Link href="/dashboard" className="text-sm font-medium hover:underline">
               Studio
             </Link>
-            <button 
+            <button
               onClick={handleLogout}
               className="bg-red-50 text-red-600 border border-red-100 text-sm px-5 py-2 rounded-md hover:bg-red-100 transition-colors"
             >
