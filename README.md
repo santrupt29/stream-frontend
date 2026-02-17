@@ -2,6 +2,12 @@
 
 This is the frontend of the premium video streaming application Vortex built with **Next.js 14**, **Tailwind CSS**, and **Zustand**. It provides a sleek, modern interface for creators to upload content and for users to stream videos with adaptive HLS playback.
 
+
+## 🔗 Repository Links
+* **Backend:** [github.com/santrupt29/stream-spring-backend](https://github.com/santrupt29/stream-spring-backend)
+* **Frontend:** [github.com/santrupt29/vortex-frontend](https://github.com/santrupt29/stream-frontend)
+
+
 ## 🚀 Features
 
 -   **Cinematic UI**: A warm, minimalist, and distraction-free design inspired by high-end streaming platforms.
